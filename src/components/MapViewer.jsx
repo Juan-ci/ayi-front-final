@@ -25,7 +25,7 @@ const MapViewer = ({ latitude, longitude }) => {
   console.log(longitude, latitude);
   return (
     <Map
-      mapboxAccessToken="pk.eyJ1IjoianVhbmlnIiwiYSI6ImNsOThrNjd4YTBtMGYzb3Q4ZHhwMXQxZncifQ.lyHWrKCtM0KYP4hGnDnMDQ"
+      mapboxAccessToken={process.env.MAP_KEY}
       ref={mapDiv}
       initialViewState={{
         center: [-53.336061851711932, 1.37729697722443], // starting position [lng, lat]
