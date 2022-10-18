@@ -15,7 +15,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 
 const CACHE_STATIC = 'cache-static-v1';
-const CACHE_DYNAMIC = 'cache_dynamic_v1';
+//const CACHE_DYNAMIC = 'cache_dynamic_v1';
 const CACHE_INMUTABLE = 'cache_inmutable_v1';
 
 
