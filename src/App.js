@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/store.js";
+import AppRoutes from "./components/AppRoutes";
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+import { SWRConfig } from "swr";
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
-function App() {
+function App() {  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Provider store={store}>
+      <BrowserRouter>
+        <SWRConfig
+          value={{
+            fetcher: (...args) => fetch(...args).then((res) => res.json()),
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <AppRoutes />
+        </SWRConfig>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
