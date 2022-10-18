@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
+/src/apikey.js
 .pnp.js
 
 # testing

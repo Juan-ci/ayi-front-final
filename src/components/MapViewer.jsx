@@ -6,6 +6,7 @@ import { getUserGeolocation } from "../store/slices/markers/thunk";
 import Map, { Marker } from "react-map-gl";
 import redIconMarker from "../static/img/redIconMarker.png";
 import useSWR  from "swr";
+import MAPBOX_API_KEY from "../apikey";
 
 const MapViewer = ({ latitude, longitude }) => {
   const mapDiv = useRef(null);
@@ -25,7 +26,7 @@ const MapViewer = ({ latitude, longitude }) => {
   console.log(longitude, latitude);
   return (
     <Map
-      mapboxAccessToken={process.env.MAP_KEY}
+      mapboxAccessToken={MAPBOX_API_KEY}
       ref={mapDiv}
       initialViewState={{
         center: [-53.336061851711932, 1.37729697722443], // starting position [lng, lat]
