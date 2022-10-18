@@ -13,7 +13,7 @@ const AppRoutes = () => {
     <>
       <NavBar />
       <Routes>
-        <Route exact path="/ayi-front-final/" element={<Home />} />
+        <Route exact path="/" element={<Home />} />
       </Routes>
     </>
   );
