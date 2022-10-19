@@ -3,7 +3,6 @@ import { IconButton } from "@mui/material";
 import notificacion from "../static/img/notificacion.png";
 import { getUserGeolocation, deleteMarkerById } from "../utils/markerService";
 import Map, { Marker, Popup } from "react-map-gl";
-//import redIconMarker from "../static/img/redIconMarker.png";
 import useSWR from "swr";
 import MAPBOX_API_KEY from "../apikey";
 
@@ -59,6 +58,7 @@ const MapViewer = () => {
                 anchor="bottom"
                 maxWidth='100px'
                 onClose={handleOnClosePopUp}
+                closeOnClick={false}
               >
                 {marker.longitude} {marker.latitude}
               </Popup>
