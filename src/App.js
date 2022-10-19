@@ -1,7 +1,5 @@
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./store/store.js";
 import AppRoutes from "./components/AppRoutes";
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { SWRConfig } from "swr";
@@ -11,7 +9,6 @@ mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 function App() {  
   
   return (
-    <Provider store={store}>
       <BrowserRouter>
         <SWRConfig
           value={{
@@ -21,7 +18,6 @@ function App() {
           <AppRoutes />
         </SWRConfig>
       </BrowserRouter>
-    </Provider>
   );
 }
 

@@ -1,29 +1,29 @@
 import React, { useRef } from "react";
 import { IconButton } from "@mui/material";
 import notificacion from "../static/img/notificacion.png";
-import { useDispatch } from "react-redux";
-import { getUserGeolocation } from "../store/slices/markers/thunk";
-import Map, { Marker } from "react-map-gl";
-import redIconMarker from "../static/img/redIconMarker.png";
-import useSWR  from "swr";
+import { getUserGeolocation, deleteMarkerById } from "../utils/markerService";
+import Map, { Marker, Popup } from "react-map-gl";
+//import redIconMarker from "../static/img/redIconMarker.png";
+import useSWR from "swr";
 import MAPBOX_API_KEY from "../apikey";
 
-const MapViewer = ({ latitude, longitude }) => {
+const MapViewer = () => {
   const mapDiv = useRef(null);
-  const dispatch = useDispatch();
-  const getAllUrl = "http://localhost:8080/marker/getAllMarkers";
+  const getAllUrl = "https://panic-button.herokuapp.com/marker/getAllMarkers";
   const { data, error } = useSWR(getAllUrl);
-  
+
   const geojson = data && !error ? data : [];
 
   const handleClickAlert = async (event) => {
     event.preventDefault();
 
-    console.log("LONGITUD: " + longitude + "LATITUD: " + latitude);
-    dispatch(getUserGeolocation());
+    getUserGeolocation();
   };
 
-  console.log(longitude, latitude);
+  const handleOnClosePopUp = (event) => {
+    deleteMarkerById(event.target.options.id);
+  }
+
   return (
     <Map
       mapboxAccessToken={MAPBOX_API_KEY}
@@ -43,15 +43,26 @@ const MapViewer = ({ latitude, longitude }) => {
       mapStyle="mapbox://styles/mapbox/streets-v11"
       fog={{}}
     >
-      {geojson.map((marker) => (
-        <Marker
-          key={marker.idMarker}
-          longitude={marker.longitude}
-          latitude={marker.latitude}
-          anchor="bottom"
-        >
-          <img src={redIconMarker} alt="icon-alert" />
-        </Marker>
+      {geojson?.map((marker) => (
+          <Marker
+            key={marker.idMarker}
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            anchor="center"
+            scale={2}
+          >
+            <Popup
+                key={marker.idMarker}
+                id={marker.idMarker}
+                longitude={marker.longitude}
+                latitude={marker.latitude}
+                anchor="bottom"
+                maxWidth='100px'
+                onClose={handleOnClosePopUp}
+              >
+                {marker.longitude} {marker.latitude}
+              </Popup>
+          </Marker>
       ))}
       <IconButton
         aria-label="alert button"
