@@ -3,7 +3,7 @@ import { IconButton } from "@mui/material";
 import notificacion from "../static/img/notificacion.png";
 import { getUserGeolocation, deleteMarkerById } from "../utils/markerService";
 import Map, { Marker, Popup } from "react-map-gl";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import MAPBOX_API_KEY from "../apikey";
 
 const MapViewer = () => {
@@ -17,10 +17,13 @@ const MapViewer = () => {
     event.preventDefault();
 
     getUserGeolocation();
+    mutate(getAllUrl);
   };
 
   const handleOnClosePopUp = (event) => {
     deleteMarkerById(event.target.options.id);
+
+    mutate(getAllUrl);
   }
 
   return (
