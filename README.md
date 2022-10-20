@@ -13,7 +13,7 @@ Como mejora estaba pensado la implementación de login de usuario para obtenció
 El desafío estuvo centrado en el front ya que es donde no cuento con experiencia.
 
 Herramientas integradas:
-    MapboxGl:
+    mapboxGl:
         https://docs.mapbox.com/mapbox-gl-js/api/,
 
     react-map-gl:
