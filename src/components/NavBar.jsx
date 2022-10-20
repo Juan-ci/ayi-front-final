@@ -14,12 +14,7 @@ import './NavBar.css';
 
 const pages = [];
 
-/* No dejaba poner dentro del menú Links components */
-//const burguerMenu = ["LogIn", "About us"];
 const burguerMenu = [];
-
-//const settings = ["Profile", "Logout"];
-//const settings = [];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -28,24 +23,7 @@ const NavBar = () => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (e) => {
-    // console.log(e.target.textContent); Burguer menu
-    //const content = e.target.textContent;
-
-    /*
-    switch (content) {
-      case "LogIn":
-        navigate("/integrador/");
-        break;
-      case "About us":
-        navigate("/about-us");
-        break;
-      default:
-        console.log("ERROR en handleCloseNavMenu");
-        break;
-    }
-    */
-
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
