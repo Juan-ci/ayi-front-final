@@ -31,7 +31,7 @@ const MapViewer = () => {
       mapboxAccessToken={MAPBOX_API_KEY}
       ref={mapDiv}
       initialViewState={{
-        center: [-53.336061851711932, 1.37729697722443], // starting position [lng, lat]
+        center: [-53.336061851711932, 1.37729697722443],  // starting position [lng, lat]
         zoom: 1.4, // starting zoom
         projection: "globe", // display the map as a 3D globe
       }}
